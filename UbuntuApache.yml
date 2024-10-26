@@ -1,0 +1,54 @@
+- hosts: Ubuntu
+  become: yes  # Esto permite ejecutar como sudo
+  tasks:
+    - name: Update apt repo and cache 
+      apt:
+        update_cache: yes
+
+    - name: Instalar Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Ensure Apache is started and enabled
+      service:
+        name: apache2
+        enabled: yes  # Habilitar el servicio para que arranque automáticamente
+        state: started  # Asegurarse de que Apache esté corriendo
+
+    - name: Allow HTTP through the firewall 
+      ufw:
+        rule: allow
+        port: 80
+        proto: tcp
+
+    - name: Crear archivo index.html con contenido de noticias deportivas
+      copy:
+        content: |
+          <html>
+          <head> 
+           <title>Noticias Deportivas</title>
+          </head>
+          <body>
+            <h1>Actualizaciones</h1>
+            <ul>
+              <li><strong>Football:</strong> Liga Premier.</li>
+              <li><strong>Basketball:</strong> NBA Pretemporada.</li>
+              <li><strong>Tennis:</strong> Actualizaciones Grand Slam.</li>
+            </ul>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Ensure UFW is enabled
+      ufw:
+        state: enable
+
+
+              
+     
+
+

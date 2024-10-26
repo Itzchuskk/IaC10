@@ -24,7 +24,7 @@ variable "aws_secret" {
 #region de trabajo 
 variable "region_aws" {
     description = "region AWS"
-    default = "us-east-1"
+    default = "us-east-2"
 
   
 }
