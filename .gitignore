@@ -1,0 +1,11 @@
+#####################################################
+#
+# Programador: Emiliano Moreno Hernandez 
+#
+# Fecha de Creación: 25-Oct-2024
+# Fecha de Modificación: 25-Oct-2024 
+#
+#####################################################
+
+#excluded files 
+terraform.tfvars
